@@ -25,28 +25,31 @@ $(document).ready(function () {
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
     function currentTimeBlock() {
-      $('.time-block').each(function() {
+      $('.time-block').each(function(i, time) {
         var hourOfDay = dayjs().hour();
-        var hourBlock = parseInt($('.time-block').attr('id').split('hour')[1]);
+        var hourBlock = parseInt(time.id.split('hour')[1]);
         
+        console.log(this)
+         
         if (hourBlock < hourOfDay){
-          $('.time-block').removeClass('future');
-          $('.time-block').removeClass('present');
-          $('.time-block').addClass('past');
+          $(this).removeClass('future');
+          $(this).removeClass('present');
+          $(this).addClass('past');
         } 
         else if (hourBlock === hourOfDay) {
-          $('.time-block').removeClass('future');
-          $('.time-block').removeClass('past');
-          $('.time-block').addClass('present');
+          $(this).removeClass('future');
+          $(this).removeClass('past');
+          $(this).addClass('present');
         }
         else {
-          $('.time-block').removeClass('past');
-          $('.time-block').removeClass('present');
-          $('.time-block').addClass('future');
+          $(this).removeClass('past');
+          $(this).removeClass('present');
+          $(this).addClass('future');
         };
-    });
+        
+      });
       };
-    
+      
       currentTimeBlock();
 
     // TODO: Add code to get any user input that was saved in localStorage and set
